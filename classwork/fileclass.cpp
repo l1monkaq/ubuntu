@@ -20,12 +20,14 @@ int main() {
 	px3 = &x3;
 
 	std::cout << "x1: " <<  x1  << "\nx2: " << x2  << "\nx3: "  << x3  << std::endl;
-	std::cout<< "px1: "  << px1  << std::endl;
-	std::cout<< "px1: "  << (long) px1  << std::endl;
-	std::cout<< "px2: "  << px2  << std::endl;
-        std::cout<< "px2: "  << (long) px1  << std::endl;
-	std::cout<< "px3: "  << px3  << std::endl;
-        std::cout<< "px3: "  << (long) px1  << std::endl;
+	std::cout << "px1: "  << px1  << std::endl;
+	std::cout << "px1: "  << (long) px1  << std::endl;
+	std::cout << "px2: "  << px2  << std::endl;
+        std::cout << "px2: "  << (long) px1  << std::endl;
+	std::cout << "px3: "  << px3  << std::endl;
+        std::cout << "px3: "  << (long) px1  << std::endl;
+	std::cout << "\n*px1: " << *px1 << "\n*px2: " << *px2 << "\n*px3: " << *px3 << std::endl;
 	return 0;
+
 	
 }		
