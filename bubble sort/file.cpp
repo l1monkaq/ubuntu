@@ -1,40 +1,137 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
-#include <cstdlib>
 #include <ctime>
+#include <cstdlib>
 
-int main() {
-    int n;
-    std::cout << "Enter the size of the array (n): ";
-    std::cin >> n;
+int rand_range(int a, int b)
+{
+	return rand() % ((b + 1) - a) + a;
+}
 
-    if (n <= 0) {
-        std::cerr << "The size of the array must be a positive number." << std::endl;
-        return 1;
-    }
+int rand_range()
+{
+	return rand();
+}
 
-    std::vector<int> array(n);
+int search(int* arr, int lenght, int value)
+{
+	for(int i = 0; i < lenght; i++)
+	{
+		if(value == arr[i])
+			return i;
+	}
 
-    std::srand(std::time(nullptr));
+	return -1;
+}
 
-    for (int i = 0; i < n; ++i) {
-        array[i] = std::rand() % 100;
-    }
+int binnary_search(int* arr, int lenght, int value)
+{
+	int right = lenght, left = 0;
 
-    std::cout << "Initial array: ";
-    for (int num : array) {
-        std::cout << num << " ";
-    }
-    std::cout << std::endl;
+	while(right > left)
+	{
+		std::cout << "Left: " << left << " Right: " << right << std::endl;
+		int middle = (right + left) / 2;
 
-    std::sort(array.begin(), array.end());
+		if(arr[middle] > value)
+		{
+			right = middle - 1;
+		}
+		else if(arr[middle] < value)
+		{
+			left = middle + 1;
+		}
+		else if(arr[middle] == value)
+		{
+			return middle;
+		}
+	}
 
-    std::cout << "Sorted array: ";
-    for (int num : array) {
-        std::cout << num << " ";
-    }
-    std::cout << std::endl;
+	return -1;
+}
 
-    return 0;
+void bubble_sort(int* arr, int lenght)
+{
+	for(int j = 0; j < lenght; j++)
+        {
+                bool sorted = true;
+                for(int i = 0; i < lenght - j - 1; i++)
+                {
+                        if(arr[i] > arr[i + 1])
+                        {
+                                int a = 0;
+                                a = arr[i];
+                                arr[i] = arr[i + 1];
+                                arr[i + 1] = a;
+                                sorted = false;
+                        }
+                }
+
+                if(sorted)
+                        break;
+        }
+}
+    struct vector
+    {       int* data;   
+            int size; 
+            int capacity;
+            vector(int size_ = 0):data(0), size(size_), capacity(2 * size + 1)
+            {
+                std::cout << "Counstructor" << std::endl;
+                data = new int[capacity];
+            };
+            ~vector()
+            {
+                delete[] data;
+                std::cout << "Destructor" << std::endl;
+            }
+            int get_size()
+            {
+                    return size;       
+           };
+            int at(int index)
+            {
+                    std::cout <<"Size: " << size << "\t" << "Capacity" << capacity << std::endl;
+                    return data[index];
+            };
+
+            int& operator[](int index)
+            {
+                    return data[index];
+            };
+            void push_back(int element)
+            {
+                    if(size > capacity)
+                    {
+                        std::cout << "Resizing Size:  " << size << "\t Capacity: " << capacity << std::endl;
+                        capacity *= 2;
+                       int* temp = new int[capacity];
+
+                        for(int i = 0; i < size; i++)
+                        {
+                            temp[i] = data[i];
+                        }
+
+                        delete[] data;
+
+                        data = temp;
+                    }
+                    data[size++] = element;
+
+            };
+    };      
+    
+
+
+int main()
+{
+	srand((int)time(0));
+    
+    vector v;
+
+    for (int i = 0; i < 100; i++)
+            v.push_back(rand_range());
+
+    for (int i = 0; i < 100; i++)
+            std::cout << v[i] << "\t";
+	return 0;   
 }
