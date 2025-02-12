@@ -1,8 +1,11 @@
 #include <iostream>
-#include <vector>
 
 void sieve(int n) {
-    std::vector<bool> prime(n + 1, true);
+    bool prime[n + 1];
+    for (int i = 0; i <= n; ++i) {
+        prime[i] = true;
+    }
+    
     for (int p = 2; p <= n; ++p) {
         if (prime[p]) {
             std::cout << p << " ";
