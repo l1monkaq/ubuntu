@@ -1,12 +1,14 @@
 #include <iostream>
 
-void sieve(int n) {
+void sieve(int n) 
+{
     bool prime[n + 1];
     for (int i = 0; i <= n; ++i) {
         prime[i] = true;
     }
     
-    for (int p = 2; p <= n; ++p) {
+    for (int p = 2; p <= n; ++p) 
+{
         if (prime[p]) {
             std::cout << p << " ";
             for (int i = p * 2; i <= n; i += p) {
@@ -17,7 +19,8 @@ void sieve(int n) {
     std::cout << std::endl;
 }
 
-int main() {
+int main() 
+{
     sieve(1000);
     return 0;
 }
